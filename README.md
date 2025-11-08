@@ -99,6 +99,7 @@ http://localhost:8000
 
 
 **📂 Struktur Folder Penting**
+```bash
 MyLibrary/
 ├── app/
 │   ├── Http/Controllers/
@@ -115,14 +116,14 @@ MyLibrary/
 ├── public/
 │   └── assets/
 └── README.md
-
+```
 💡 Kontributor
 
 👨‍💻 Rivan Alfatoni
 Program Studi Sistem Informasi, Fakultas Teknik
 Universitas Bengkulu
 📧 rivanalfatoni195@gmail.com
-🔗 instagram.com/projectvan_
+🔗 <a hreff='instagram.com/projectvan_'>projectvan_</a>
 
 
 🌟 Dukungan
