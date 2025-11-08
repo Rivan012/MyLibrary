@@ -53,7 +53,7 @@ Aplikasi ini mendukung multi-role (Admin, Petugas, dan Anggota) dengan antarmuka
 ### 1. Clone repository
 ```bash
 git clone https://github.com/Rivan012/MyLibrary.git
-cd MyLibrary
+cd MyLibrary ```
 
 **2. Install dependencies**
 composer install
