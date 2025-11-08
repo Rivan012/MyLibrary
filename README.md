@@ -40,7 +40,7 @@ Aplikasi ini mendukung multi-role (Admin, Petugas, dan Anggota) dengan antarmuka
 
 | Komponen | Teknologi |
 |-----------|------------|
-| Backend | Laravel 10 (PHP 8.2) |
+| Backend | Laravel 12 (PHP 8.3) |
 | Frontend | Blade, Bootstrap 5, jQuery |
 | Database | MySQL / MariaDB |
 | Auth | Laravel Breeze / Custom Middleware |
