@@ -51,8 +51,10 @@ Aplikasi ini mendukung multi-role (Admin, Petugas, dan Anggota) dengan antarmuka
 ## ⚙️ Instalasi di Lokal
 
 ### 1. Clone repository
+```bash
 git clone https://github.com/Rivan012/MyLibrary.git
 cd MyLibrary
+```bash
 
 ##2. Install dependencies**
 composer install
