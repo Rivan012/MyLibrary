@@ -123,7 +123,7 @@ MyLibrary/
 Program Studi Sistem Informasi, Fakultas Teknik
 Universitas Bengkulu
 📧 rivanalfatoni195@gmail.com
-🔗 <a hreff='instagram.com/projectvan_'>projectvan_</a>
+🔗 instagram.com/projectvan_
 
 
 🌟 Dukungan
