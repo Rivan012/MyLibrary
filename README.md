@@ -54,3 +54,68 @@ Aplikasi ini mendukung multi-role (Admin, Petugas, dan Anggota) dengan antarmuka
 ```bash
 git clone https://github.com/Rivan012/MyLibrary.git
 cd MyLibrary
+
+**2. Install dependencies**
+composer install
+npm install
+npm run dev
+
+**3. Konfigurasi .env**
+Salin file contoh:
+cp .env.example .env
+Lalu ubah koneksi database:
+DB_DATABASE=mylibrary
+DB_USERNAME=root
+DB_PASSWORD=
+
+**4. Generate key**
+php artisan key:generate
+
+**5. Migrasi database & seed data awal**
+php artisan migrate --seed
+
+**6. Jalankan server**
+php artisan serve
+
+**Akses di browser:**
+http://localhost:8000
+
+**👤 Role Default (Seeder)**
+| Role    | Email                                                 | Password   |
+| ------- | ----------------------------------------------------- | ---------- |
+| Admin   | [admin@mylibrary.com](mailto:admin@mylibrary.com)     | admin123   |
+| Petugas | [petugas@mylibrary.com](mailto:petugas@mylibrary.com) | petugas123 |
+| Anggota | [anggota@mylibrary.com](mailto:anggota@mylibrary.com) | anggota123 |
+
+
+**📂 Struktur Folder Penting**
+MyLibrary/
+├── app/
+│   ├── Http/Controllers/
+│   ├── Models/
+│   └── Providers/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── resources/
+│   ├── views/
+│   └── js/
+├── routes/
+│   └── web.php
+├── public/
+│   └── assets/
+└── README.md
+
+💡 Kontributor
+
+👨‍💻 Rivan Alfatoni
+Program Studi Sistem Informasi, Fakultas Teknik
+Universitas Bengkulu
+📧 rivanalfatoni195@gmail.com
+🔗 instagram.com/projectvan_
+
+
+🌟 Dukungan
+
+Kalau repo ini bermanfaat, kasih ⭐ di GitHub ya biar makin semangat update versi berikutnya 😄
+
