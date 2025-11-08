@@ -54,34 +54,43 @@ Aplikasi ini mendukung multi-role (Admin, Petugas, dan Anggota) dengan antarmuka
 ```bash
 git clone https://github.com/Rivan012/MyLibrary.git
 cd MyLibrary
-```bash
+```
 
-##2. Install dependencies**
+### 2. Install dependencies
+```bash
 composer install
 npm install
 npm run dev
-
-**3. Konfigurasi .env**
+```
+### 3. Konfigurasi .env
 Salin file contoh:
+```bash
 cp .env.example .env
+```
 Lalu ubah koneksi database:
+```bash
 DB_DATABASE=mylibrary
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
-**4. Generate key**
+### 4. Generate key
+```bash
 php artisan key:generate
-
-**5. Migrasi database & seed data awal**
+```
+### 5. Migrasi database & seed data awal
+```bash
 php artisan migrate --seed
-
-**6. Jalankan server**
+```
+### 6. Jalankan server
+```bash
 php artisan serve
-
-**Akses di browser:**
+```
+### Akses di browser:
+```bash
 http://localhost:8000
-
-**👤 Role Default (Seeder)**
+```
+### 👤 Role Default (Seeder)
 | Role    | Email                                                 | Password   |
 | ------- | ----------------------------------------------------- | ---------- |
 | Admin   | [admin@mylibrary.com](mailto:admin@mylibrary.com)     | admin123   |
