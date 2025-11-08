@@ -35,11 +35,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_kembali" class="form-label">Petugas</label>
-                    <input type="text" disabled class="form-control" value="{{ $kembalikan->petugas->name ?? '-' }}">
+                    <input type="text"  class="form-control" name="user_id" value="{{ Auth::user()->name ?? '-' }}">
                 </div>
                 <div class="mb-3">
                     <label for="kondisi" class="form-label">Kondisi Buku</label>
-                    <input type="text" disabled class="form-control" name="kondisi_buku">
+                    <input type="text"  class="form-control" name="kondisi_buku">
                 </div>
                 <input type="hidden" name="id_buku" value="{{ $d->buku->id }}">
                 <button type="submit" class="btn btn-success">Simpan</button>

@@ -53,7 +53,7 @@
                             </li>
                             <li>
                                 <i class="bi bi-calendar-check"></i>
-                                <span>{{ $user->create_at }}</span>
+                                <span>{{ $user->created_at }}</span>
                             </li>
                         </ul>
                     </div>

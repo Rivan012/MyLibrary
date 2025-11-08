@@ -1,23 +1,22 @@
 <?php
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RakController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\GoogleController;
 
+
+Route::get('/', [AuthController::class, 'showLogin'])->name('login');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::get('/admin', function () {
-    return view('admin');
-})->middleware(['auth', 'role:admin']);
+Route::get('login/google', [GoogleController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-Route::get('/petugas', function () {
-    return view('petugas');
-})->middleware(['auth', 'role:petugas']);
 
-Route::get('/member', function () {
-    return view('anggota');
-})->middleware(['auth', 'role:anggota']);
 Route::middleware(['auth', 'role:admin,petugas'])->group(function () {
     Route::resource('anggota', App\Http\Controllers\AnggotaController::class);
     Route::resource('rak', RakController::class);
@@ -33,4 +32,7 @@ Route::middleware(['auth', 'role:anggota,petugas,admin'])->group(function () {
 });
 Route::middleware(['auth', 'role:anggota'])->group(function () {
     Route::resource('peminjaman', App\Http\Controllers\PeminjamanBukuController::class);
+});
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('petugas', App\Http\Controllers\PetugasController::class);
 });

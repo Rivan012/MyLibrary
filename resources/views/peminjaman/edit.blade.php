@@ -30,16 +30,10 @@
                     <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
                     <input required type="date" class="form-control" id="tanggal" name="tanggal_kembali" required>
                 </div>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const today = new Date().toISOString().split('T')[0];
-                        document.getElementById('tanggal').value = today;
-                    });
-                </script>
                 <div class="mb-3">
-                    <label for="tanggal_kembali" class="form-label">Petugas</label>
+                    <label for="petugas" class="form-label">Petugas</label>
                     <select required class="form-select" id="petugas" name="petugas_id" required>
-                        <option value="" disabled selected>Pilih Petugas</option>
+                        <option value="" selected>Pilih Petugas</option>
                         @foreach ($petugas as $p)
                             <option value="{{ $p->id }}">{{ $p->name }}</option>
                         @endforeach

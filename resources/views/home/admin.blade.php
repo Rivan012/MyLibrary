@@ -14,3 +14,20 @@
         <span>Anggota</span>
     </a>
 </div>
+
+<div class="col">
+    <a href="{{ route('rak.index') }}" class="category-item">
+        <div class="icon-wrapper" style="background-color: #e6f7ff; color: #1890ff;">
+            <i class="bi bi-bookshelf"></i>
+        </div>
+        <span>Rak Buku</span>
+    </a>
+</div>
+<div class="col">
+    <a href="#" class="category-item">
+        <div class="icon-wrapper" style="background-color: #f6ffed; color: #52c41a;">
+            <i class="bi bi-file-earmark-bar-graph-fill"></i>
+        </div>
+        <span>Laporan</span>
+    </a>
+</div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\Denda;
 use App\Models\Peminjaman;
 use App\Models\Pengembalian;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -15,8 +17,7 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        $pengembalian = Pengembalian::all();
-        dd($pengembalian);
+        return redirect()->route('pinjam.index');
     }
 
     /**
@@ -32,35 +33,55 @@ class PengembalianController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $peminjaman = Peminjaman::find($request->peminjaman_id);
-        // dd($peminjaman);
+
+        $name = $request->user_id;
+        $petugas = User::where('name', $name)->first();
+
+        $peminjaman = Peminjaman::findOrFail($request->peminjaman_id);
+
         $tanggal_kembali_peminjaman = Carbon::parse($peminjaman->tanggal_kembali);
         $tanggal_kembali_aktual = Carbon::parse($request->tanggal_kembali);
 
-        $selisih_hari = $tanggal_kembali_aktual->diffInDays($tanggal_kembali_peminjaman);
+        $selisih_hari = 0;
         $denda = 0;
+        $status = 'dikembalikan';
 
-        if ($tanggal_kembali_aktual > $tanggal_kembali_peminjaman) {
+        if ($tanggal_kembali_aktual->gt($tanggal_kembali_peminjaman)) {
+            $selisih_hari = $tanggal_kembali_aktual->diffInDays($tanggal_kembali_peminjaman);
             $denda = $selisih_hari * 10000;
-            Peminjaman::where('id', $request->peminjaman_id)->update(['status' => 'terlambat']);
+            $status = 'terlambat';
         }
-        Peminjaman::where('id', $request->peminjaman_id)->update(['status' => 'dikembalikan']);
-        Denda::create([
-            'nama_denda' => 'Denda Keterlambatan',
-            'nominal_per_hari' => 10000,
-            'keterangan' => $selisih_hari,
+
+        // Buat data denda (jika ada keterlambatan)
+        $dendaRecord = null;
+        if ($selisih_hari > 0) {
+            $dendaRecord = Denda::create([
+                'nama_denda' => 'Denda Keterlambatan',
+                'nominal_per_hari' => 10000,
+                'keterangan' => $selisih_hari,
+            ]);
+        }
+
+        // Update user_id peminjaman jadi petugas_id
+        Peminjaman::where('id', $request->peminjaman_id)->update([
+            'petugas_id' => $petugas->id,
+            'status' => $status,
         ]);
 
+        // Simpan data pengembalian
         Pengembalian::create([
             'peminjaman_id' => $request->peminjaman_id,
             'tanggal_pengembalian' => $request->tanggal_kembali,
             'kondisi_buku' => $request->kondisi_buku,
-            'denda_id' => Denda::latest()->first()->id,
+            'denda_id' => $dendaRecord?->id,
+            'petugas_id' => $petugas->id,
         ]);
 
-        return redirect()->route('pengembalian.index')->with('success', 'Pengembalian berhasil ditambahkan');
+        Buku::where('id', $request->id_buku)->increment('stok', 1);
+
+        return redirect()->route('pinjam.index')->with('success', 'Pengembalian berhasil ditambahkan');
     }
+
 
     /**
      * Display the specified resource.

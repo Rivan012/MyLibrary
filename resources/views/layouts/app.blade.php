@@ -289,6 +289,13 @@
                     </a>
                 </li>
             @endif
+            @if (Auth::user()->role == 'admin')
+                <li>
+                    <a href="{{ route('petugas.index') }}" class="nav-link {{ Route::is('petugas.*') ? 'active' : '' }}">
+                        <i class="bi bi-person-badge-fill"></i> Petugas
+                    </a>
+                </li>
+            @endif
 
             <li>
                 <a href="{{ route('buku.index') }}" class="nav-link {{ Route::is('buku.*') ? 'active' : '' }}">

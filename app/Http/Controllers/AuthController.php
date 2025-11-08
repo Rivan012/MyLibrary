@@ -34,11 +34,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->role === 'admin') {
-                return redirect('/admin');
+                return redirect('/home');
             } elseif ($user->role === 'petugas') {
-                return redirect('/petugas');
+                return redirect('/home');
             } else {
-                return redirect('/anggota');
+                return redirect('/home');
             }
         }
         return back()->with('error', 'Email atau password salah');

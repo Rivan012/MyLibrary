@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +12,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view("home.index");
+        $buku = Buku::orderBy("created_at","desc")->limit(7)->get();
+        return view("home.index",compact("buku"));
     }
 
     /**

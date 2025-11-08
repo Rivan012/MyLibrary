@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\DetailPeminjaman;
 use App\Models\Peminjaman;
 use App\Models\Pengembalian;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PeminjamanController extends Controller
@@ -54,16 +55,17 @@ class PeminjamanController extends Controller
     {
         $denda = Pengembalian::with('denda')->where('peminjaman_id', $id)->first();
 
-        $total = optional($denda->denda)->nominal_per_hari * optional($denda->denda)->keterangan ?? 0;
+        $total = 0;
 
-        // dd($total);
-
+        if ($denda && $denda->denda) {
+            $total = $denda->denda->nominal_per_hari * $denda->denda->keterangan;
+        }
 
         $detail = Peminjaman::with(['detail.buku', 'user', 'petugas'])->findOrFail($id);
-        return view('peminjaman.detail-peminjaman', compact('detail','total'));
 
-
+        return view('peminjaman.detail-peminjaman', compact('detail', 'total'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -71,7 +73,7 @@ class PeminjamanController extends Controller
     public function edit(string $id)
     {
         $kembalikan = Peminjaman::with(['detail.buku', 'user', 'petugas'])->findOrFail($id);
-        return view('peminjaman.kembalikan-buku', compact('kembalikan'));
+        return view('peminjaman.kembalikan-buku', compact('kembalikan', ));
     }
 
 

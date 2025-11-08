@@ -12,7 +12,7 @@
         <div class="card-header bg-white border-0 py-3">
             <div class="row">
                 <div class="col-6">
-                    <h5 class="mb-0 fw-bold">Daftar Anggota</h5>
+                    <h5 class="mb-0 fw-bold">Daftar Peminjaman buku</h5>
                 </div>
             </div>
         </div>

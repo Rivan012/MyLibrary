@@ -60,6 +60,7 @@ class PeminjamanBukuController extends Controller
     public function edit(string $id)
     {
         $petugas = User::whereIn('role', ['petugas', 'admin'])->get();
+        // dd($petugas);
         $buku = Buku::where('kode_buku', $id)->first();
         return view('peminjaman.edit', compact('buku','petugas'));
     }
