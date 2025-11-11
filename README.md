@@ -1,4 +1,4 @@
-# 📚 MyLibrary (updated coming soon)
+# 📚 MyLibrary (updated coming soon) (nanti dulu)
 
 
 MyLibraryUnib adalah sistem manajemen perpustakaan berbasis web yang dikembangkan menggunakan **Laravel 12**, bertujuan untuk mempermudah proses pengelolaan data buku, anggota, peminjaman, dan pengembalian secara digital.  
